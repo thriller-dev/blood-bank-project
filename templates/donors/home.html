@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-4">Find a Blood Donor Near You</h1>
+        <p class="lead mb-5">Your search could save a life today. Fast, simple, and reliable.</p>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card card-custom p-4 shadow-lg text-dark text-start">
+                    <form action="{% url 'search_results' %}" method="GET">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-5">
+                                <label for="blood_group" class="form-label fw-bold">Blood Group</label>
+                                <select class="form-select" id="blood_group" name="blood_group">
+                                    <option value="" selected>Any Blood Group...</option>
+                                    {% for value, display in blood_groups %}
+                                        <option value="{{ value }}">{{ display }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="city" class="form-label fw-bold">City/Location</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="e.g. Kottayam    ">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-danger w-100 fw-bold">
+                                    <i class="fa-solid fa-magnifying-glass me-2"></i>Search
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <i class="fa-solid fa-user-plus fa-3x text-danger mb-3"></i>
+            <h3>Register</h3>
+            <p>Join our community of donors and be ready to save lives.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <i class="fa-solid fa-magnifying-glass-location fa-3x text-danger mb-3"></i>
+            <h3>Search</h3>
+            <p>Find donors in your city with the exact blood type needed.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <i class="fa-solid fa-heart-pulse fa-3x text-danger mb-3"></i>
+            <h3>Save Lives</h3>
+            <p>Contact available donors quickly when emergencies arise.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
